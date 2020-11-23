@@ -5,9 +5,21 @@ jobs:
     name: runner / markdownlint
     runs-on: ubuntu-latest
     steps:
+      - name: markdownlint-github-pr-check
+        uses: ./
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          level: warning
       - name: markdownlint-github-check
         uses: ./
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-check
+          level: warning
+      - name: markdownlint-github-pr-review
+        uses: ./
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
           level: warning
